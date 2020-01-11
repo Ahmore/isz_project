@@ -374,7 +374,7 @@ def make_game_of_life():
 
 
 
-def make_glider(dims0):
+def make_glider(dims0, position=None):
     """
     Produce Glider initial conditions for Conway's Game of Life
     
@@ -396,7 +396,10 @@ def make_glider(dims0):
                               [0,0,1],
                               [1,1,1]])
     
-    ins_inds = np.floor(dims/2).astype(int)
+    if position is None:
+        ins_inds = np.floor(dims/2).astype(int)
+    else:
+        ins_inds = np.array([position, position])
 
     out_arr = np.zeros(dims)
     out_arr[ins_inds[0]-1:ins_inds[0]+2, ins_inds[1]-1:ins_inds[1]+2] = glider_center
